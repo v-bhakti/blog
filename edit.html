@@ -1,0 +1,75 @@
+    {% extends "layout.html" %}
+    {% block body %}
+        <!-- Page Header-->
+        <!--<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">-->
+        <header class="masthead" style="background-image: url({{url_for('static', filename='assets/img/home-bg.jpg')}})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Admin Panel</h1>
+                            <span class="subheading">Manage your posts and change them</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-10">
+                    <h1>Basic Action</h1>
+                    <!-- Back to Dashboard Home -->
+                    <a href="/dashboard"><button class="btn btn-primary"> Dashboard Home </button></a>
+                    <!-- Logout -->
+                    <a href="/logout"><button class="btn btn-primary"> Logout</button></a>
+                    <hr>
+                  <!--Insert or Edit Post-->
+                  <h1>Add/Edit Post</h1>
+                    <form action="/edit/{{sno}}" id="dashboard" method="post">
+                        <div class="form-floating">
+                            <input class="form-control" id="title" name = "title" type="text" placeholder="Enter post tittle here..." required="required" value="{{post.title}}"/>
+                            <label for="title">Title</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="tag_line" name = "tag_line" type="text" required="required" placeholder="Enter post tag line here..." value="{{post.tag_line}}"/>
+                            <label for="title">Tag Line</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A tag line is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="slug" name = "slug" type="text" required="required" placeholder="Enter post slug here..." value="{{post.slug}}"/>
+                            <label for="title">Slug</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A slug is required.</div>
+                        </div>
+                        <div class="form-floating">
+                             <textarea class="form-control" id="content" name = "content"  placeholder="Enter post content here..." style="height: 12rem" required="required" >{{post.content}}</textarea>
+                            <label for="content">Content</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A content is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="image_file" name = "image_file" type="text" required="required" placeholder="Enter post image file name here..." value="{{post.img_file}}"/>
+                            <label for="image_file">Image File</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A image file is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="created_by" name = "created_by" type="text" required="required" placeholder="Enter post author name here..." value="{{post.created_by}}"/>
+                            <label for="created_by">Posted by</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A posted by is required.</div>
+                        </div>
+                        <br />
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">{{success}}</div>
+                                <!--To activate this form, sign up at-->
+                                <br />
+                            </div>
+                        </div>
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">{{error}}</div></div>
+                        <!-- Submit Button-->
+                        <button type="submit" class="btn btn-primary text-uppercase" id="submitButton" >Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
